@@ -47,11 +47,11 @@ class CourseController extends Controller
         $description = ' ';
         $input = $request->all();
 
-        $kondisi = $request->all('description');
-        if ($kondisi['description'] == NULL) {
+        $check_desc = $request->input('description');
+        if ($check_desc == NULL) {
             $input['description'] = $description;
         } else {
-            $input['description'] = $kondisi['description'];
+            $input['description'] = $check['description'];
         }
         
         $input['lecture_id'] = $lecture_id;
@@ -62,6 +62,26 @@ class CourseController extends Controller
         ]);
     }
 
+    public function update(Request $request, $id)
+    {
+        $course = Course::findOrFail($id);
+        
+        $check_name = $request->input('name');
+        if ($check_name != NULL) {
+            $course->name = $request->input('name');
+        }
+        $check_desc = $request->input('description');
+        if ($check_desc != NULL) {
+            $course->description = $request->input('description');
+        }
+        $course->save();
+
+        return response()->json([
+            'success' => true,
+            'massage' => 'Berhasil mengubah data mata kuliah',
+            'data' => $course,
+        ]);
+    }
 
     public function destroy($id)
     {

@@ -17,4 +17,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 // Manajemen Mata Kuliah & Kelas Online
 Route::get('/courses', [CourseController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/courses', [CourseController::class, 'store'])->middleware('auth:sanctum');
+Route::put('/courses/{id}', [CourseController::class, 'update'])->middleware('auth:sanctum');
 Route::delete('/courses/{id}', [CourseController::class, 'destroy'])->middleware('auth:sanctum');
+Route::post('/courses/{id}/enroll', [CourseController::class, 'enroll'])->middleware('auth:sanctum');
+
