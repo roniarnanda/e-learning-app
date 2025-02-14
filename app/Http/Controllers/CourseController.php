@@ -11,8 +11,18 @@ class CourseController extends Controller
 {
     public function index()
     {
-        $token = request()->user()->currentAccessToken()->tokenable['id'];
-        return $token;
+        // $token = request()->user()->currentAccessToken()->tokenable['id'];
+        // return $token;
+
+        $data = Course::all();
+        $data['lecture'] = Course::all()->lecture->name;
+
+        return response()->json([
+            'success' => false,
+            'massage' => 'Berhasil memuat data',
+            'data' => $data,
+        ]);
+
     }
 
     public function store(Request $request)
