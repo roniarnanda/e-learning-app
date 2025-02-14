@@ -61,4 +61,15 @@ class CourseController extends Controller
             'message' => 'Data Mata Kuliah Berhasil Ditambahkan',
         ]);
     }
+
+
+    public function destroy($id)
+    {
+        $course = Course::findOrFail($id);
+        $course->delete();
+        return response()->json([
+            'success' => true,
+            'massage' => 'Berhasil menghapus mata kuliah',
+        ]);
+    }
 }
