@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('student_id');
             $table->foreign('student_id')->references('id')->on('users');
             $table->string('file_path');
-            $table->integer('score')->default(NULL);
+            $table->integer('score')->nullable();
             $table->timestamps();
         });
     }
