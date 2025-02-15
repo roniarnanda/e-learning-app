@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
 {
@@ -64,7 +66,7 @@ class CourseController extends Controller
 
     public function update(Request $request, $id)
     {
-        $course = Course::findOrFail($id);
+        $course = Course::find($id);
         
         $check_name = $request->input('name');
         if ($check_name != NULL) {
@@ -85,11 +87,26 @@ class CourseController extends Controller
 
     public function destroy($id)
     {
-        $course = Course::findOrFail($id);
+        $course = Course::find($id);
         $course->delete();
         return response()->json([
             'success' => true,
             'massage' => 'Berhasil menghapus mata kuliah',
+        ]);
+    }
+
+    public function enroll($id)
+    {
+        $student_id = request()->user()->currentAccessToken()->tokenable['id'];
+        $user = User::find($student_id);
+        $course_id = DB::table('student_courses')->where('course_id', $id)->first('course_id');
+        if ($course_id == NULL) {
+            $user->enroll_courses()->attach($id);
+        }
+
+        return response()->json([
+            'success' => true,
+            'massage' => 'Mahasiswa berhasil mendaftar mata kuliah',
         ]);
     }
 }

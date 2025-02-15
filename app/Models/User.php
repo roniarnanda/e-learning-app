@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
   
 class User extends Authenticatable
 {
@@ -50,6 +51,11 @@ class User extends Authenticatable
     public function courses(): HasMany
     {
         return $this->hasMany(Course::class, 'lecture_id');
+    }
+
+    public function enroll_courses(): BelongsToMany
+    {
+        return $this->belongsToMany(Course::class, 'student_courses', 'student_id', 'course_id');
     }
 
 }
