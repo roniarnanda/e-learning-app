@@ -11,7 +11,6 @@ POST /api/register
 
 | Parameters    |               | data type  |
 | ------------- |:-------------:| -------------|
-| id   | required	  	| autoincrement |
 | name         | required      |    string	   |
 | email         | required      |    string	   |
 | role         | required      |    enum(form select option)	   |
@@ -23,9 +22,50 @@ POST /api/register
 ```json
 {
 	"success": true,
-    "message": "Message",
+    "message": "Berhasil Registrasi",
     "data": {
         "data"
     }
+}
+```
+
+### 2. Login
+
+```json
+POST /api/login
+```
+#### Parameters
+
+| Parameters    |               | data type  |
+| ------------- |:-------------:| -------------|
+| email         | required      |    string	   |
+| password         | required      |    password	   |
+
+#### Result
+
+```json
+{
+	"success": true,
+    "message": "Berhasil Login",
+    "data": {
+        "token": "data token"
+    }
+}
+```
+
+### 3. Logout
+
+```json
+POST /api/logout
+```
+#### Parameters
+
+Tanpa inputan
+
+#### Result
+
+```json
+{
+	"message": "Berhasil Logout"
 }
 ```
