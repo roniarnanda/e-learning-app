@@ -37,4 +37,12 @@ class MaterialController extends Controller
             'message' => 'Data Materi Berhasil Ditambahkan',
         ]);
     }
+
+    public function download($id)
+    {
+        $material = Material::find($id);
+        $path = Storage::path($material->file_path);
+
+        return response()->download($path);
+    }
 }
