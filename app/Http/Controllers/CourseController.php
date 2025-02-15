@@ -43,16 +43,7 @@ class CourseController extends Controller
             ]);
         }
 
-        $description = ' ';
         $input = $request->all();
-
-        $check_desc = $request->input('description');
-        if ($check_desc == NULL) {
-            $input['description'] = $description;
-        } else {
-            // $input['description'] = $check['description'];
-        }
-        
         $input['lecture_id'] = $lecture_id;
         $course = Course::create($input);
         return response()->json([
