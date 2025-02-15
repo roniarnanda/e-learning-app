@@ -65,6 +65,29 @@ class AssignmentController extends Controller
             'message' => 'Data Materi Berhasil Ditambahkan',
             'data' => $data,
         ]);
+    }
 
+    public function grade(Request $request, $id) 
+    {
+        $submission = Submission::find($id);
+        $validatedData = Validator::make($request->all(), [
+            'score' => 'required',
+        ]);
+
+        if ($validatedData->fails()) {
+            return response()->json([
+                'success' => false,
+                'massage' => 'Ada kesalahan',
+                'data' => $validatedData->errors()
+            ]);
+        }
+
+        $submission->score = $request->input('score');
+        $submission->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Nilai berhasil diberikan',
+        ]);
     }
 }
