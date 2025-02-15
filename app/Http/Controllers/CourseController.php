@@ -54,7 +54,7 @@ class CourseController extends Controller
         }
         
         $input['lecture_id'] = $lecture_id;
-        $user = Course::create($input);
+        $course = Course::create($input);
         return response()->json([
             'success' => true,
             'message' => 'Data Mata Kuliah Berhasil Ditambahkan',

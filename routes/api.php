@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\AssignmentController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -26,4 +27,7 @@ Route::post('/courses/{id}/enroll', [CourseController::class, 'enroll'])->middle
 Route::post('/materials', [MaterialController::class, 'store'])->middleware('auth:sanctum');
 Route::get('/materials/{id}/download', [MaterialController::class, 'download'])->middleware('auth:sanctum');
 
-
+// Manajemen Tugas & Penilaian
+Route::post('/assignments', [AssignmentController::class, 'store'])->middleware('auth:sanctum');
+Route::post('/submissions', [AssignmentController::class, 'submit'])->middleware('auth:sanctum');
+Route::post('/submissions/{id}/grade', [AssignmentController::class, 'grade'])->middleware('auth:sanctum');
