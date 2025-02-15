@@ -58,4 +58,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Course::class, 'student_courses', 'student_id', 'course_id');
     }
 
+    public function submissions(): HasMany
+    {
+        return $this->hasMany(Submission::class, 'student_id');
+    }
+
 }

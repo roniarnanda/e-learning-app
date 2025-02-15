@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Assignment;
+use App\Models\Submission;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -51,6 +52,28 @@ class ReportController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Berhasil memuat statistik penugasan',
+            'data' => $data,
+        ], 200);  
+    }
+
+    public function students($id)
+    {
+        $student = User::find($id);
+        $student_submissions = $student->submissions;
+        $i=0;
+        foreach ($student_submissions as $student_submission) {
+            $assignment_id = $student_submission->assignment_id;
+            $submission = Submission::find($assignment_id);
+            $data[$i]['course_id'] = $submission->assignment->course_id;
+            $data[$i]['title'] = $submission->assignment->title;
+            $data[$i]['score'] = $student_submission->score;
+            $i++;
+        }
+
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Berhasil memuat statistik tugas dan nilai mahasiswa',
             'data' => $data,
         ], 200);  
     }
