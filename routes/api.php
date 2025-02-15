@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\DiscussionController;
@@ -36,3 +37,8 @@ Route::post('/submissions/{id}/grade', [AssignmentController::class, 'grade'])->
 // Manajemen Forum Diskusi
 Route::post('/discussions', [DiscussionController::class, 'store'])->middleware('auth:sanctum');
 Route::post('/discussions/{id}/replies', [DiscussionController::class, 'reply'])->middleware('auth:sanctum');
+
+// Statistik
+Route::get('/reports/courses', [ReportController::class, 'courses'])->middleware('auth:sanctum');
+Route::get('/reports/assignments', [ReportController::class, 'assignments'])->middleware('auth:sanctum');
+Route::get('/reports/students/{id}', [ReportController::class, 'students'])->middleware('auth:sanctum');

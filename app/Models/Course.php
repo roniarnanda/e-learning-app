@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 
 class Course extends Model
@@ -28,5 +29,10 @@ class Course extends Model
     public function assigment(): HasMany
     {
         return $this->hasMany(Assignment::class);
+    }
+
+    public function enroll_students(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'student_courses', 'course_id', 'student_id');
     }
 }
