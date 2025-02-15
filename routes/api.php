@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\DiscussionController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -31,3 +32,7 @@ Route::get('/materials/{id}/download', [MaterialController::class, 'download'])-
 Route::post('/assignments', [AssignmentController::class, 'store'])->middleware('auth:sanctum');
 Route::post('/submissions', [AssignmentController::class, 'submit'])->middleware('auth:sanctum');
 Route::post('/submissions/{id}/grade', [AssignmentController::class, 'grade'])->middleware('auth:sanctum');
+
+// Manajemen Forum Diskusi
+Route::post('/discussions', [DiscussionController::class, 'store'])->middleware('auth:sanctum');
+Route::post('/discussions/{id}/replies', [DiscussionController::class, 'reply'])->middleware('auth:sanctum');
