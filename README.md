@@ -7,7 +7,7 @@
 ```json
 POST /api/register
 ```
-#### Parameters
+#### Parameters Inputan
 
 | Parameters    |               | data type  |
 | ------------- |:-------------:| -------------|
@@ -34,7 +34,7 @@ POST /api/register
 ```json
 POST /api/login
 ```
-#### Parameters
+#### Parameters Inputan
 
 | Parameters    |               | data type  |
 | ------------- |:-------------:| -------------|
@@ -58,7 +58,7 @@ POST /api/login
 ```json
 POST /api/logout
 ```
-#### Parameters
+#### Parameters Inputan
 
 Tanpa inputan
 
@@ -95,7 +95,7 @@ GET /api/courses
 ```json
 POST /api/courses
 ```
-#### Parameters
+#### Parameters Inputan
 
 | Parameters    |               | data type  |
 | ------------- |:-------------:| -------------|
@@ -108,5 +108,63 @@ POST /api/courses
 {
 	"success": true,
     "message": "Data Mata Kuliah Berhasil Ditambahkan"
+}
+```
+
+### 3. Dosen mengedit mata kuliah
+
+```json
+PUT /courses/{id}
+```
+#### Parameters Inputan
+
+| Parameters    |               | data type  |
+| ------------- |:-------------:| -------------|
+| name         | optional      |    string	   |
+| description         | optional      |    text	   |
+
+#### Result
+
+```json
+{
+	 "success": true,
+    "massage": "Berhasil mengubah data mata kuliah",
+    "data": {
+        objectData
+    }
+}
+```
+
+### 3. Dosen menghapus mata kuliah
+
+```json
+DELETE /courses/{id}
+```
+#### Parameters Inputan
+
+
+#### Result
+
+```json
+{
+	"success": true,
+    "massage": "Berhasil menghapus mata kuliah"
+}
+```
+
+### 4. Mahasiswa mendaftar mata kuliah
+
+```json
+POST /courses/{id}/enroll
+```
+#### Parameters Inputan
+
+
+#### Result
+
+```json
+{
+	"success": true,
+    "massage": "Mahasiswa berhasil mendaftar mata kuliah"
 }
 ```
