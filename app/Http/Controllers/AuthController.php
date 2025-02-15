@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -59,6 +60,10 @@ class AuthController extends Controller
 
         $email = $user->email;
         $role = $user->role;
+
+        // Hapus duplikat token 
+        // $deleted = DB::delete('delete from personal_access_tokens')->where('name', $email);
+        $user->tokens()->where('name', $email)->delete();
         $success['token'] = $user->createToken($email, [$role])->plainTextToken;
 
         return response()->json([
