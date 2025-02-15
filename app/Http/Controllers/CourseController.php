@@ -50,7 +50,7 @@ class CourseController extends Controller
         if ($check_desc == NULL) {
             $input['description'] = $description;
         } else {
-            $input['description'] = $check['description'];
+            // $input['description'] = $check['description'];
         }
         
         $input['lecture_id'] = $lecture_id;
