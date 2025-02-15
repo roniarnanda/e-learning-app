@@ -26,11 +26,6 @@ return Application::configure(basePath: dirname(__DIR__))
         return response()->json([
             'message' => 'Not Authorized',
         ],403);
-        // $exceptions->render(function (MissingAbilityException $e, Request $request) {
-
-        //     return response()->json([
-        //         'message' => 'Not Authorized',
-        //         'my_custom' => 'custom_field'
-        //     ], 401);
+        
     });
     })->create();
