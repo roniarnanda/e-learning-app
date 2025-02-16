@@ -62,7 +62,7 @@ class AssignmentController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Data Materi Berhasil Ditambahkan',
+            'message' => 'Jawaban berhasil diunggah',
             'data' => $data,
         ]);
     }
@@ -87,7 +87,7 @@ class AssignmentController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Nilai berhasil diberikan',
+            'message' => 'Nilai telah diberikan',
         ]);
     }
 }
