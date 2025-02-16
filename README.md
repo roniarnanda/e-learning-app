@@ -192,7 +192,7 @@ POST /api/materials
 
 | Parameters    |               | data type  |
 | ------------- |:-------------:| -------------|
-| course_id         | required      |    select <option> from courses |
+| course_id         | required      |    select option from courses |
 | title         | required      |    string	   |
 | file         | required      |    file	   |
 
@@ -230,7 +230,7 @@ POST /api/assignments
 | Parameters    |               | data type  |
 | ------------- |:-------------:| -------------|
 | title         | required      |    string	   |
-| course_id         | required      |    select <option> from courses |
+| course_id         | required      |    select option from courses |
 | description         | required      |    text	   |
 | deadline         | required      |    datetime	   |
 
@@ -253,7 +253,7 @@ POST /api/submissions
 
 | Parameters    |               | data type  |
 | ------------- |:-------------:| -------------|
-| assignment_id         | required      |    select <option> from assignment |
+| assignment_id         | required      |    select option from assignment |
 | file         | required      |    file	   |
 
 #### Result
@@ -300,7 +300,7 @@ POST /api/discussions
 
 | Parameters    |               | data type  |
 | ------------- |:-------------:| -------------|
-| course_id         | required      |    select <option> from courses |
+| course_id         | required      |    select option from courses |
 | content         | required      |    text	   |
 
 #### Result
